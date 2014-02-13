@@ -4,6 +4,7 @@ gem 'rails', '4.0.2'
 
 gem 'devise'
 gem 'pg'
+gem 'validate_url'
 
 gem 'coffee-rails'
 gem 'jquery-rails'
