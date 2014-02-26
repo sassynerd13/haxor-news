@@ -1,12 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   respond_to :html, :json
-  before_action :enable_json_backdoor
+  before_action :fix_request_format, :enable_json_backdoor
   rescue_from ActionController::ParameterMissing, with: :bad_request
   rescue_from ActionController::UnpermittedParameters, with: :bad_request
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity
 
   private
+
+  def fix_request_format
+    # Always prefer JSON even if other formats are accepted at same priority
+    if request.headers['Accept'] =~ /application\/json/
+      request.format = :json
+    end
+  end
 
   def enable_json_backdoor
     respond_to do |wants|
