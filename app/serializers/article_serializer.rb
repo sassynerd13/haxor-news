@@ -5,10 +5,15 @@ class ArticleSerializer < ActiveModel::Serializer
     :url,
     :score,
     :current_vote,
+    :comments_count,
     :created_at
 
   def user_email
     object.user.email
+  end
+
+  def comments_count
+    object.comments.count
   end
 
   def current_vote
