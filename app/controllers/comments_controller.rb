@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     @comment = Comment.new
+    respond_with @comments
   end
 
   def create
@@ -11,11 +12,23 @@ class CommentsController < ApplicationController
     @comment.article = @article
     @comment.user = current_user
 
-    if @comment.save
-      redirect_to [@article, :comments], notice: 'Comment added!'
-    else
-      flash.now[:alert] = @comment.errors.full_messages.join(', ')
-      render :index
+    respond_to do |wants|
+      wants.html do
+        if @comment.save
+          redirect_to [@article, :comments], notice: 'Comment added!'
+        else
+          flash.now[:alert] = @comment.errors.full_messages.join(', ')
+          render :index
+        end
+      end
+
+      wants.json do
+        if @comment.save
+          render json: @comment, status: :created, location: [@article, :comments]
+        else
+          respond_with @comment
+        end
+      end
     end
   end
 

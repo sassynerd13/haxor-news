@@ -8,6 +8,10 @@ module Votable
     has_many :votes, as: :votable
   end
 
+  def vote_for(user)
+    votes.find_by(user_id: user.id)
+  end
+
   def voted_by?(user, direction)
     votes.find_by(user_id: user.id, direction: direction).present?
   end

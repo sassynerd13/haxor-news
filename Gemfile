@@ -2,8 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.3'
 
+gem 'active_model_serializers'
 gem 'devise'
 gem 'pg'
+gem 'rack-cors', require: 'rack/cors'
 gem 'validate_url'
 
 gem 'coffee-rails'

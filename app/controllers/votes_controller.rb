@@ -5,7 +5,10 @@ class VotesController < ApplicationController
     vote = Vote.find_or_initialize_by(user: current_user, votable: votable)
     vote.update!(direction: params[:direction])
 
-    redirect_to :back
+    respond_to do |wants|
+      wants.html { redirect_to :back }
+      wants.json { render json: vote }
+    end
   end
 
   private
