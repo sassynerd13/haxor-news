@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: HaxorNews_development
+  database: ajaxer_news_lab_development
   pool: 5
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: HaxorNews_test
+  database: ajaxer_news_lab_test
   pool: 5
