@@ -7,7 +7,7 @@ feature 'Visitor views comments on an article' do
     visit root_path
     within('div', text: comment.article.title) { click_link '1 comment' }
 
-    within('div') do
+    within('.comment') do
       expect(page).to have_content "2 points by #{comment.user.email} 3 days ago"
     end
   end

@@ -10,7 +10,7 @@ feature 'User votes a comment' do
     visit root_path
     within('div', text: @comment.article.title) { click_link '1 comment' }
 
-    within('div', text: @comment.body) do
+    within('.comment', text: @comment.body) do
       expect(page).to_not have_link 'Upvote'
       expect(page).to_not have_link 'Downvote'
     end
@@ -29,9 +29,9 @@ feature 'User votes a comment' do
     scenario 'from neutral' do
       view_comments
 
-      within('div', text: @comment.body) { click_link 'Upvote' }
+      within('.comment', text: @comment.body) { click_link 'Upvote' }
 
-      within('div', text: @comment.body) do
+      within('.comment', text: @comment.body) do
         expect(page).to have_content '1 point'
       end
     end
@@ -40,9 +40,9 @@ feature 'User votes a comment' do
       create(:vote, user: @user, votable: @comment, direction: 'down')
       view_comments
 
-      within('div', text: @comment.body) { click_link 'Upvote' }
+      within('.comment', text: @comment.body) { click_link 'Upvote' }
 
-      within('div', text: @comment.body) do
+      within('.comment', text: @comment.body) do
         expect(page).to have_content '1 point'
       end
     end
@@ -52,9 +52,9 @@ feature 'User votes a comment' do
     scenario 'from neutral' do
       view_comments
 
-      within('div', text: @comment.body) { click_link 'Downvote' }
+      within('.comment', text: @comment.body) { click_link 'Downvote' }
 
-      within('div', text: @comment.body) do
+      within('.comment', text: @comment.body) do
         expect(page).to have_content '-1 points'
       end
     end
@@ -63,9 +63,9 @@ feature 'User votes a comment' do
       create(:vote, user: @user, votable: @comment, direction: 'up')
       view_comments
 
-      within('div', text: @comment.body) { click_link 'Downvote' }
+      within('.comment', text: @comment.body) { click_link 'Downvote' }
 
-      within('div', text: @comment.body) do
+      within('.comment', text: @comment.body) do
         expect(page).to have_content '-1 points'
       end
     end
@@ -76,9 +76,9 @@ feature 'User votes a comment' do
       create(:vote, user: @user, votable: @comment, direction: 'up')
       view_comments
 
-      within('div', text: @comment.body) { click_link 'Upvote' }
+      within('.comment', text: @comment.body) { click_link 'Upvote' }
 
-      within('div', text: @comment.body) do
+      within('.comment', text: @comment.body) do
         expect(page).to have_content '0 points'
       end
     end
@@ -87,9 +87,9 @@ feature 'User votes a comment' do
       create(:vote, user: @user, votable: @comment, direction: 'down')
       view_comments
 
-      within('div', text: @comment.body) { click_link 'Downvote' }
+      within('.comment', text: @comment.body) { click_link 'Downvote' }
 
-      within('div', text: @comment.body) do
+      within('.comment', text: @comment.body) do
         expect(page).to have_content '0 points'
       end
     end

@@ -12,6 +12,10 @@ gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
 
+group :development do
+  gem 'coffee-rails-source-maps'
+end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
@@ -25,6 +29,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'poltergeist'
 end
 
 group :production do

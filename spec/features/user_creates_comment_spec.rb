@@ -15,7 +15,7 @@ feature 'User comments on an article' do
     expect(page).to have_content 'You need to sign in or sign up'
   end
 
-  context 'when signed in' do
+  context 'when signed in', :js do
     background do
       @user = create(:user)
       sign_in_as(@user)
@@ -28,7 +28,7 @@ feature 'User comments on an article' do
       click_button 'Add Comment'
 
       expect(page).to have_content 'Comment added!'
-      within('div', text: 'Get off my lawn!') do
+      within('.comment', text: 'Get off my lawn!') do
         expect(page).to have_content "by #{@user.email} less than a minute ago"
       end
     end

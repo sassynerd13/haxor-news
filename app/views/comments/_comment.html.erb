@@ -1,0 +1,5 @@
+<div class="comment" data-score="<%= comment.score %>">
+  <hr>
+  <p><%= render 'shared/byline', votable: comment %></p>
+  <%= simple_format(comment.body) %>
+</div>

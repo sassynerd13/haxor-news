@@ -7,16 +7,13 @@
 <h3>Comments</h3>
 
 <% if user_signed_in? %>
-  <%= form_for [@article, @comment] do |f| %>
+  <%= form_for [@article, @comment], remote: true do |f| %>
     <%= f.text_area :body, placeholder: 'Enter comment...' %>
     <%= f.submit 'Add Comment' %>
   <% end %>
+  <div id="comment-flash"></div>
 <% end %>
 
-<% @comments.each do |comment| %>
-  <div class="comment">
-    <hr>
-    <p><%= render 'shared/byline', votable: comment %></p>
-    <%= simple_format(comment.body) %>
-  </div>
-<% end %>
+<div id="comments">
+  <%= render @comments %>
+</div>

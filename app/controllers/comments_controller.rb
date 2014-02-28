@@ -11,12 +11,7 @@ class CommentsController < ApplicationController
     @comment.article = @article
     @comment.user = current_user
 
-    if @comment.save
-      redirect_to [@article, :comments], notice: 'Comment added!'
-    else
-      flash.now[:alert] = @comment.errors.full_messages.join(', ')
-      render :index
-    end
+    @comment.save
   end
 
   private
