@@ -1,4 +1,4 @@
-HaxorNews::Application.routes.draw do
+Rails.application.routes.draw do
   devise_for :users
 
   # Since each user will only ever have one vote for a given article/comment,
